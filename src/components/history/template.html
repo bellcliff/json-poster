@@ -4,7 +4,7 @@
     </div>
     <div class="panel-body">
         <ul data-ng-repeat="url in urls">
-            <li><span data-ng-bind="url" ng-click="select(url)"></span></li>
+            <li><span class="glyphicon glyphicon-remove" ng-click="remove(url)"></span><span data-ng-bind="url" ng-click="select(url)"></span></li>
         </ul>
     </div>
 </div>

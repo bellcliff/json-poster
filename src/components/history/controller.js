@@ -1,15 +1,14 @@
-(function () {
-    'use static'
+module.exports = function ($scope, $rootScope, historyService, EVENT_URL_SELECTED) {
 
-    angular.module('poster')
-        .controller('HistoryCtrl', function ($scope, historyService, EVENT_URL_SELECTED) {
+    historyService.url().then(urls=> {
+        $scope.urls = urls;
+    });
 
-            historyService.url().then(urls=> {
-                $scope.urls = urls;
-            });
+    $scope.select = function (url) {
+        $rootScope.$broadcast(EVENT_URL_SELECTED, {request: {url: url}})
+    };
 
-            $scope.select = function (url) {
-                $scope.$broadcast(EVENT_URL_SELECTED, {request: {url: url}})
-            }
-        });
-});
+    $scope.remove = function(url) {
+        historyService.removeUrl(url)
+    };
+};

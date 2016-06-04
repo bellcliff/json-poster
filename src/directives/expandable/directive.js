@@ -1,6 +1,4 @@
-(function () {
-    'use strict'
-
+module.exports = function () {
     angular.module('poster')
         .directive('expandable', function () {
             return {
@@ -34,4 +32,4 @@
                 }
             }
         })
-})();
+};

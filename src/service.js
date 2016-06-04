@@ -1,9 +1,6 @@
-
-(function(){
-    'use strict';
+module.exports = function(){
 
     angular.module('poster')
-
         .service('chromeStorage', function () {
             var self = this;
             self.set = function (key, value) {
@@ -35,7 +32,7 @@
                 })
             };
 
-            self.clear = function () {
+            self.clear = () => {
                 return new Promise(resolve => {
                     chrome.storage.sync.clear(function () {
                         resolve();
@@ -43,8 +40,19 @@
                 });
             };
 
-            self.remove = key => {
-                chrome.storage.sync.remove(key);
+            self.remove = (key,value) => {
+                return new Promise(resolve=>{
+                    if(value)
+                        return self.get(key).then(values=>{
+                            values.splice(values.indexOf(value), 1);
+                            return self.set(key, values);
+                        });
+                    else
+                        chrome.storage.sync.remove(key, function(data){
+                            resolve(data)
+                        });
+
+                })
             }
         })
         .service('historyService', function (chromeStorage) {
@@ -81,4 +89,4 @@
 
             };
         })
-})()
+};
