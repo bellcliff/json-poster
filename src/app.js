@@ -1,24 +1,27 @@
-
 angular.module('poster', ['ui.router'])
     .constant('EVENT_URL_SELECTED', 'event_url_selected')
-    .run(function ($http) {
-        // set default headers
-        $http.defaults.headers.common['Content-Type'] = 'application/vnd.americanexpress.req-v1+json';
-    })
-    .config(function($stateProvider, $urlRouterProvider){
+    .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('');
         $stateProvider
             .state('index', {
                 url: '',
                 views: {
                     history: {
-                        templateUrl: 'components/history/template.html',
-                        controller: 'HistoryCtrl'
+                        template: require('html!./components/history/template.html'),
+                        controller: require('./components/history/controller')
                     },
                     post: {
-                        templateUrl: 'components/post/template.html',
-                        controller: 'PostCtrl'
+                        template: require('html!./components/post/template.html'),
+                        controller: require('./components/post/controller')
                     }
                 }
-            })
+            });
     })
+    .run(function($http) {
+        console.log($http.defaults.headers.common)
+        $http.defaults.headers.post['Content-Type'] = 'application/vnd.americanexpress.req-v1+json';
+        console.log($http.defaults.headers.common)
+    });
+
+require('./directives/expandable/directive')();
+require('./service')();

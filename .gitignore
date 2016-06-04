@@ -34,3 +34,6 @@ node_modules
 
 # web storm
 .idea
+
+# gulp dist
+dist
