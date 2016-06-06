@@ -16,9 +16,9 @@ module.exports = function () {
 
                     if (attrs.expanded === undefined) {
                         body.toggle();
-                        icon.addClass('glyphicon-plus')
+                        icon.addClass('glyphicon-plus');
                     } else {
-                        icon.addClass('glyphicon-minus')
+                        icon.addClass('glyphicon-minus');
                     }
 
                     header.on('click', function () {
@@ -27,9 +27,9 @@ module.exports = function () {
                         icon.toggleClass('glyphicon-minus');
                     });
                     element.on('$destroy', function () {
-                        header.off('click')
-                    })
+                        header.off('click');
+                    });
                 }
-            }
-        })
+            };
+        });
 };

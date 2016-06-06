@@ -1,4 +1,4 @@
-module.exports = function(){
+module.exports = function () {
 
     angular.module('poster')
         .service('chromeStorage', function () {
@@ -29,7 +29,7 @@ module.exports = function(){
                         console.log('storage load', key, data);
                         resolve(data[key]);
                     });
-                })
+                });
             };
 
             self.clear = () => {
@@ -40,20 +40,19 @@ module.exports = function(){
                 });
             };
 
-            self.remove = (key,value) => {
-                return new Promise(resolve=>{
-                    if(value)
-                        return self.get(key).then(values=>{
+            self.remove = (key, value) => {
+                return new Promise(resolve=> {
+                    if (value)
+                        return self.get(key).then(values=> {
                             values.splice(values.indexOf(value), 1);
                             return self.set(key, values);
                         });
                     else
-                        chrome.storage.sync.remove(key, function(data){
-                            resolve(data)
+                        chrome.storage.sync.remove(key, function (data) {
+                            resolve(data);
                         });
-
-                })
-            }
+                });
+            };
         })
         .service('historyService', function (chromeStorage) {
             var self = this;
@@ -71,22 +70,21 @@ module.exports = function(){
                     // add url and history
                     return self.url(url).then(() => {
                         return chromeStorage.add(url, info);
-                    })
+                    });
                 } else if (url) {
                     // load url info
-                    return chromeStorage.get(url)
+                    return chromeStorage.get(url);
                 } else {
                     // load all history
                     return self.url().then(function (urls) {
                         return $q.all($.map(urls, (url) => {
-                            return self.history(url)
-                        }))
-                    })
+                            return self.history(url);
+                        }));
+                    });
                 }
             };
-
             self.removeHistory = function (history) {
 
             };
-        })
+        });
 };
