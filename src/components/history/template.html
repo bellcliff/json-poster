@@ -3,7 +3,7 @@
         <h3 class="panel-title">Post History</h3>
     </div>
     <div class="panel-body">
-        <ul data-ng-repeat="url in urls">
+        <ul class="histories" data-ng-repeat="url in urls">
             <li><span class="glyphicon glyphicon-remove" ng-click="remove(url)"></span><span data-ng-bind="url" ng-click="select(url)"></span></li>
         </ul>
     </div>

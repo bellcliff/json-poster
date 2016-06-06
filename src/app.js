@@ -17,10 +17,8 @@ angular.module('poster', ['ui.router'])
                 }
             });
     })
-    .run(function($http) {
-        console.log($http.defaults.headers.common)
+    .run(function ($http) {
         $http.defaults.headers.post['Content-Type'] = 'application/vnd.americanexpress.req-v1+json';
-        console.log($http.defaults.headers.common)
     });
 
 require('./directives/expandable/directive')();

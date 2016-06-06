@@ -22,7 +22,7 @@ module.exports = function ($scope, $http, historyService, EVENT_URL_SELECTED) {
         $scope.postInfo.response = {};
         var url = $scope.postInfo.request.url;
         var body = $scope.postInfo.request.body;
-        if (!body || body.length == 0) body = '{}';
+        if (!body || body.length === 0) body = '{}';
 
         $http.post(url, JSON.parse(body))
             .then(function (data) {
@@ -32,7 +32,6 @@ module.exports = function ($scope, $http, historyService, EVENT_URL_SELECTED) {
                 $scope.postInfo.response = data;
             });
 
-        // add history
         historyService.url(url);
-    }
+    };
 };
