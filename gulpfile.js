@@ -75,9 +75,7 @@ gulp.task('jshint', function () {
 gulp.task('build', ['clean', 'libs', 'files', 'scripts', 'styles', 'index']);
 
 gulp.task('watch', ['build'], function () {
-    watch('src/**/*.js', function (e, done) {
-        gulp.start('scripts', done)
-    });
+    gulp.watch(['src/**/*.js','src/**/*.html'], ['scripts']);
     // watch('src/**/*.scss', function (e, done) {
     //     gulp.start('styles', done);
     // });

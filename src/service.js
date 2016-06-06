@@ -92,9 +92,9 @@ module.exports = function () {
                 } else {
                     return self.url().then(urls=> {
                         return $q.all($.map(urls, url => {
-                            return self.removeHistory(url)
+                            return self.removeHistory(url);
                         }));
-                    })
+                    });
                 }
             };
         });

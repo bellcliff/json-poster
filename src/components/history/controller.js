@@ -5,6 +5,7 @@ module.exports = function ($scope, $rootScope, historyService, chromeStorage, EV
     });
 
     $scope.select = function (info, event) {
+        // stop pop event
         if (event) event.stopPropagation();
         $rootScope.$broadcast(EVENT_URL_SELECTED, angular.copy(info));
     };

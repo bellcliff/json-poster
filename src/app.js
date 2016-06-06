@@ -1,7 +1,10 @@
 angular.module('poster', ['ui.router'])
+
     .constant('EVENT_URL_SELECTED', 'event_url_selected')
+
     .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('');
+
         $stateProvider
             .state('index', {
                 url: '',
@@ -18,6 +21,7 @@ angular.module('poster', ['ui.router'])
                 }
             });
     })
+
     .run(function ($http) {
         $http.defaults.headers.post['Content-Type'] = 'application/vnd.americanexpress.req-v1+json';
     });
