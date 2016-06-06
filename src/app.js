@@ -8,11 +8,12 @@ angular.module('poster', ['ui.router'])
                 views: {
                     history: {
                         template: require('html!./components/history/template.html'),
-                        controller: require('./components/history/controller')
+                        controller: require('./components/history/controller'),
+                        controllerAs: 'history'
                     },
                     post: {
                         template: require('html!./components/post/template.html'),
-                        controller: require('./components/post/controller')
+                        controller: require('./components/post/controller'),
                     }
                 }
             });

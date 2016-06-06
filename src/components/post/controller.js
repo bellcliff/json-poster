@@ -6,6 +6,10 @@ module.exports = function ($scope, $http, historyService, EVENT_URL_SELECTED) {
     };
 
     $scope.$on(EVENT_URL_SELECTED, function (e, info) {
+        // $scope.postInfo = info;
+        console.log(info);
+        // remove the response
+        delete info.response;
         $scope.postInfo = info;
     });
 
@@ -27,6 +31,7 @@ module.exports = function ($scope, $http, historyService, EVENT_URL_SELECTED) {
         $http.post(url, JSON.parse(body))
             .then(function (data) {
                 $scope.postInfo.response = data;
+                historyService.history(url, $scope.postInfo);
             })
             .catch(function (data) {
                 $scope.postInfo.response = data;

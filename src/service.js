@@ -54,7 +54,7 @@ module.exports = function () {
                 });
             };
         })
-        .service('historyService', function (chromeStorage) {
+        .service('historyService', function (chromeStorage, $q) {
             var self = this;
 
             self.url = url => {
@@ -77,14 +77,25 @@ module.exports = function () {
                 } else {
                     // load all history
                     return self.url().then(function (urls) {
-                        return $q.all($.map(urls, (url) => {
+                        return $q.all($.map(urls, url => {
                             return self.history(url);
                         }));
                     });
                 }
             };
-            self.removeHistory = function (history) {
 
+            self.removeHistory = function (url) {
+                if (url) {
+                    return chromeStorage.remove(url).then(()=> {
+                        return chromeStorage.remove('urls', url);
+                    });
+                } else {
+                    return self.url().then(urls=> {
+                        return $q.all($.map(urls, url => {
+                            return self.removeHistory(url)
+                        }));
+                    })
+                }
             };
         });
 };

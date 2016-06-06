@@ -1,10 +1,26 @@
 <div class="panel panel-default" expandable="panel">
     <div class="panel-heading">
-        <h3 class="panel-title">Post History</h3>
+        <h3 class="panel-title">Post History <label class="label label-default">Count: {{historyInfo.length}}</label></h3>
     </div>
     <div class="panel-body">
-        <ul class="histories" data-ng-repeat="url in urls">
-            <li><span class="glyphicon glyphicon-remove" ng-click="remove(url)"></span><span data-ng-bind="url" ng-click="select(url)"></span></li>
+        <!--<div>-->
+            <!--<h4>Actions:-->
+                <!--<a class="btn btn-danger" ng-click="clean()">CLEAN</a>-->
+            <!--</h4>-->
+        <!--</div>-->
+        <ul class="history-list">
+            <li data-ng-repeat="info in historyInfo" ng-click="select(info[0])">
+                <span data-ng-bind="info[0].request.url"></span>
+                <ul>
+                    <li data-ng-repeat="req in info" ng-click="select(req, $event)">
+                        <pre>{{req.request.body}}</pre>
+                    </li>
+                </ul>
+                <!--<ul>-->
+                <!--<span data-ng-bind="url" ng-click="select(url)"></span>-->
+                <!--<span class="glyphicon glyphicon-remove" ng-click="remove(url)"></span>-->
+                <!--</ul>-->
+            </li>
         </ul>
     </div>
 </div>

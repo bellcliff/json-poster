@@ -72,16 +72,18 @@ gulp.task('jshint', function () {
         .pipe(jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('watch', ['clean', 'libs', 'files', 'scripts', 'styles', 'index'], function () {
+gulp.task('build', ['clean', 'libs', 'files', 'scripts', 'styles', 'index']);
+
+gulp.task('watch', ['build'], function () {
     watch('src/**/*.js', function (e, done) {
         gulp.start('scripts', done)
     });
-    watch('src/**/*.scss', function (e, done) {
-        gulp.start('styles', done);
-    });
-    watch('src/index.html', function (e, done) {
-        gulp.start('index', done);
-    })
+    // watch('src/**/*.scss', function (e, done) {
+    //     gulp.start('styles', done);
+    // });
+    // watch('src/index.html', function (e, done) {
+    //     gulp.start('index', done);
+    // })
 });
 
 // The default task (called when you run `gulp` from cli)
