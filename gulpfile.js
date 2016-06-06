@@ -76,12 +76,8 @@ gulp.task('build', ['clean', 'libs', 'files', 'scripts', 'styles', 'index']);
 
 gulp.task('watch', ['build'], function () {
     gulp.watch(['src/**/*.js','src/**/*.html'], ['scripts']);
-    // watch('src/**/*.scss', function (e, done) {
-    //     gulp.start('styles', done);
-    // });
-    // watch('src/index.html', function (e, done) {
-    //     gulp.start('index', done);
-    // })
+    gulp.watch('src/**/*.scss', ['styles']);
+    gulp.watch('src/index.html', ['index']);
 });
 
 // The default task (called when you run `gulp` from cli)
