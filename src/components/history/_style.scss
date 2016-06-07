@@ -1,5 +1,19 @@
-.history-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+.history-panel {
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    pre.request-body {
+        width: 2em;
+        height: 2em;
+
+        &::before, &::after {
+
+        }
+        &::before {
+
+        }
+    }
 }

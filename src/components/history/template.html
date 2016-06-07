@@ -1,4 +1,4 @@
-<div class="panel panel-default" expandable="panel">
+<div class="panel panel-default history-panel" expandable="panel">
     <div class="panel-heading">
         <h3 class="panel-title">Post History <label class="label label-default">Count: {{historyInfo.length}}</label></h3>
     </div>
@@ -12,8 +12,8 @@
             <li data-ng-repeat="info in historyInfo" ng-click="select(info[0])">
                 <span data-ng-bind="info[0].request.url"></span>
                 <ul>
-                    <li data-ng-repeat="req in info" ng-click="select(req, $event)">
-                        <pre>{{req.request.body}}</pre>
+                    <li data-ng-repeat="req in _.uniq(info)" ng-click="select(req, $event)">
+                        <pre class="request-body">{{req.request.body}}</pre>
                     </li>
                 </ul>
                 <!--<ul>-->
