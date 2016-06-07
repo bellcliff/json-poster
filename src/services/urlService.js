@@ -10,5 +10,5 @@ angular.module('poster')
         self.parseUrl = url => {
             parser.href = url;
             return _.pick(parser, ['protocol', 'hostname', 'port', 'pathname', 'search', 'hash']);
-        }
+        };
     });
