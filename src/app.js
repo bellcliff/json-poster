@@ -27,5 +27,5 @@ angular.module('poster', ['ui.router'])
     });
 
 require('./directives/expandable/directive')();
-require('./services/chromeStorage');
+require('./services/chromeStorageService');
 require('./services/historyService');

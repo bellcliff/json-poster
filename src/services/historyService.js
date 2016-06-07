@@ -14,13 +14,16 @@ angular.module('poster').service('historyService', function (chromeStorage, $q) 
 
     self.history = function (url, info) {
         if (url && info) {
+            delete info.request.url;
             // add url and history
             return self.url(url).then(() => {
-                return chromeStorage.add(url, info);
+                return chromeStorage.add(url, JSON.stringify(info));
             });
         } else if (url) {
             // load url info
-            return chromeStorage.get(url);
+            var info = JSON.parse(chromeStorage.get(url));
+            info.request.url = url;
+            return info;
         } else {
             // load all history
             return self.url().then(function (urls) {

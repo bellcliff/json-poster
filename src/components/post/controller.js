@@ -31,7 +31,7 @@ module.exports = function ($scope, $http, historyService, EVENT_URL_SELECTED) {
         $http.post(url, JSON.parse(body))
             .then(function (data) {
                 $scope.postInfo.response = data;
-                historyService.history(url, $scope.postInfo);
+                historyService.history(url, _.clone($scope.postInfo));
             })
             .catch(function (data) {
                 $scope.postInfo.response = data;

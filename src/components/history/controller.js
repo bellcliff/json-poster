@@ -10,7 +10,8 @@ module.exports = function ($scope, $rootScope, historyService, chromeStorage, EV
         $rootScope.$broadcast(EVENT_URL_SELECTED, angular.copy(info));
     };
 
-    $scope.remove = function (url) {
+    $scope.remove = function (url, event) {
+        if (event) event.stopPropagation();
         if (!url) chromeStorage.clear();
         else historyService.removeUrl(url);
     };
