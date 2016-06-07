@@ -9,7 +9,7 @@ angular.module('poster')
                 var info = {};
                 info[key] = value;
                 chrome.storage.sync.set(info, data => {
-                    console.log('storage save', key, value, data);
+                    console.debug('storage save', key, value, data);
                     resolve(data);
                 });
             });
@@ -27,13 +27,14 @@ angular.module('poster')
         self.get = key => {
             return new Promise(function (resolve) {
                 chrome.storage.sync.get(key, function (data) {
-                    console.log('storage load', key, data);
+                    console.debug('storage load', key, data);
                     resolve(data[key]);
                 });
             });
         };
 
         self.clear = () => {
+            console.debug('clean storage');
             return new Promise(resolve => {
                 chrome.storage.sync.clear(function () {
                     resolve();

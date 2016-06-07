@@ -26,7 +26,7 @@ angular.module('poster', ['ui.router'])
         $http.defaults.headers.post['Content-Type'] = 'application/vnd.americanexpress.req-v1+json';
     });
 
-require('./directives/expandable/directive')();
+require('./directives/expandable')();
 require('./services/urlService');
 require('./services/chromeStorageService');
 require('./services/historyService');

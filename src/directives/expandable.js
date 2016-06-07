@@ -7,7 +7,6 @@ module.exports = function () {
 
                     var header, body, iconHolder, icon, prefix;
                     prefix = attrs.expandable;
-                    console.log('prefix', prefix);
                     header = element.find('.' + prefix + '-heading');
                     iconHolder = element.find('.' + prefix + '-title');
                     body = element.find('.' + prefix + '-body');
