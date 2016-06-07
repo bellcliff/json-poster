@@ -19,7 +19,7 @@
                 <ul>
                     <li data-ng-repeat="request in requestsInfo.requests"
                         ng-click="select(requestsInfo.url, request, $event)">
-                        <pre class="request-body" ng-bind="request.body | json: spacing"></pre>
+                        <pre class="request-body" ng-bind="request.body | json: 2"></pre>
                     </li>
                 </ul>
                 <!--<ul>-->
