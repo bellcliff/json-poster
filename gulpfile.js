@@ -17,6 +17,7 @@ const PATH_BUILD = 'build';
 const PATH_DIST = path.join(PATH_BUILD, 'dist');
 const PATH_STYLE = path.join(PATH_DIST, 'css');
 const PATH_JS = path.join(PATH_DIST, 'js');
+const PATH_TEMPLATE = path.join(PATH_DIST, 'templates');
 
 gulp.task('clean', function () {
     return del.sync([PATH_BUILD]);
@@ -49,9 +50,13 @@ gulp.task('styles', function () {
         .pipe(gulp.dest(PATH_STYLE));
 });
 
-gulp.task('index', function () {
-    gulp.src('src/index.html')
-        .pipe(gulp.dest(PATH_DIST))
+gulp.task('template', function () {
+    return es.concat(
+        gulp.src('src/index.html')
+            .pipe(gulp.dest(PATH_DIST)),
+        gulp.src('src/templates/**/*')
+            .pipe(gulp.dest(PATH_TEMPLATE))
+    )
 });
 
 gulp.task('files', function () {
@@ -72,12 +77,12 @@ gulp.task('jshint', function () {
         .pipe(jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('build', ['clean', 'libs', 'files', 'scripts', 'styles', 'index']);
+gulp.task('build', ['clean', 'libs', 'files', 'scripts', 'styles', 'template']);
 
 gulp.task('watch', ['build'], function () {
     gulp.watch(['src/**/*.js','src/**/*.html'], ['scripts']);
     gulp.watch('src/**/*.scss', ['styles']);
-    gulp.watch('src/index.html', ['index']);
+    gulp.watch(['src/index.html', 'src/templates/**'], ['template']);
 });
 
 // The default task (called when you run `gulp` from cli)

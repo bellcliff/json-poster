@@ -4,26 +4,13 @@ angular.module('poster', ['ui.router'])
 
     .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('');
-
         $stateProvider
-            .state('index', {
-                url: '',
-                views: {
-                    history: {
-                        template: require('html!./views/history/template.html'),
-                        controller: require('./views/history/controller'),
-                        controllerAs: 'history'
-                    },
-                    post: {
-                        template: require('html!./views/post/template.html'),
-                        controller: require('./views/post/controller'),
-                    }
-                }
-            });
+            .state('poster', _.extend({url: ''}, require('./views/poster/router')))
     })
 
-    .run(function ($http) {
+    .run(function ($http, $state) {
         $http.defaults.headers.post['Content-Type'] = 'application/vnd.americanexpress.req-v1+json';
+        $state.go('poster');
     });
 
 require('./directives/expandable')();

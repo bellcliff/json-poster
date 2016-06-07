@@ -12,9 +12,8 @@
 
 <body>
 <div class="container container-fluid">
-    <h1>Amex Poster</h1>
-    <section ui-view="history"></section>
-    <section ui-view="post"></section>
+    <div ng-include="'templates/navigation.html'"></div>
+    <div ui-view></div>
 </div>
 
 <script src="js/app.js"></script>
