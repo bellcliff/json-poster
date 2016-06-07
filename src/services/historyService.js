@@ -1,7 +1,7 @@
 /**
  * Created by byang1 on 6/6/16.
  */
-angular.module('poster').service('historyService', function (chromeStorage, $q) {
+angular.module('poster').service('historyService', function ($q, chromeStorage, urlService) {
     var self = this;
 
     self.url = url => {
@@ -14,16 +14,20 @@ angular.module('poster').service('historyService', function (chromeStorage, $q) 
 
     self.history = function (url, info) {
         if (url && info) {
-            delete info.request.url;
             // add url and history
             return self.url(url).then(() => {
                 return chromeStorage.add(url, JSON.stringify(info));
             });
         } else if (url) {
             // load url info
-            var info = JSON.parse(chromeStorage.get(url));
-            info.request.url = url;
-            return info;
+            var requestInfo = {url: url, urlInfo: urlService.parseUrl(url)};
+            return chromeStorage.get(url).then(requests=> {
+                requestInfo.requests = _.map(requests, request=> {
+                    request = JSON.parse(request);
+                    return request;
+                });
+                return requestInfo;
+            });
         } else {
             // load all history
             return self.url().then(function (urls) {

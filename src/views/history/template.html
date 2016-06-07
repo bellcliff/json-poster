@@ -1,0 +1,33 @@
+<div class="panel panel-default history-panel" expandable="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">Post History <label class="label label-default">Count: {{historyInfo.length}}</label>
+        </h3>
+        <button class="btn btn-danger btn-remove-all" ng-click="remove(null, $event)">clean</button>
+    </div>
+    <div class="panel-body">
+        <!--<div>-->
+        <!--<h4>Actions:-->
+        <!--<a class="btn btn-danger" ng-click="clean()">CLEAN</a>-->
+        <!--</h4>-->
+        <!--</div>-->
+        <ul class="history-list">
+            <li data-ng-repeat="requestsInfo in historyInfo" ng-click="select(requestsInfo)">
+                <h6 class="url-info">
+                    <span class="secondary">{{requestsInfo.urlInfo.protocol}}//</span><span class="primary">{{requestsInfo.urlInfo.hostname}}</span><span
+                        class="primary">{{requestsInfo.urlInfo.port}}</span><span class="secondary">{{requestsInfo.urlInfo.pathname}}</span><span
+                        class="secondary">{{requestsInfo.urlInfo.search}}</span>
+                </h6>
+                <ul>
+                    <li data-ng-repeat="request in requestsInfo.requests"
+                        ng-click="select(requestsInfo.url, request, $event)">
+                        <pre class="request-body" ng-bind="request.body | json: spacing"></pre>
+                    </li>
+                </ul>
+                <!--<ul>-->
+                <!--<span data-ng-bind="url" ng-click="select(url)"></span>-->
+                <!--<span class="glyphicon glyphicon-remove" ng-click="remove(url)"></span>-->
+                <!--</ul>-->
+            </li>
+        </ul>
+    </div>
+</div>

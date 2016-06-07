@@ -10,13 +10,13 @@ angular.module('poster', ['ui.router'])
                 url: '',
                 views: {
                     history: {
-                        template: require('html!./components/history/template.html'),
-                        controller: require('./components/history/controller'),
+                        template: require('html!./views/history/template.html'),
+                        controller: require('./views/history/controller'),
                         controllerAs: 'history'
                     },
                     post: {
-                        template: require('html!./components/post/template.html'),
-                        controller: require('./components/post/controller'),
+                        template: require('html!./views/post/template.html'),
+                        controller: require('./views/post/controller'),
                     }
                 }
             });
@@ -27,5 +27,6 @@ angular.module('poster', ['ui.router'])
     });
 
 require('./directives/expandable/directive')();
+require('./services/urlService');
 require('./services/chromeStorageService');
 require('./services/historyService');

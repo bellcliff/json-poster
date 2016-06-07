@@ -9,15 +9,26 @@
         padding: 0;
     }
 
-    pre.request-body {
-        width: 2em;
-        height: 2em;
+    .history-list {
 
-        &::before, &::after {
+        .url-info {
 
+            .secondary {
+                display: none;
+            }
+            &:hover .secondary {
+                display: inline-block;
+            }
         }
-        &::before {
 
+        pre.request-body {
+            height: 8em;
+            width: 30%;
+            float: left;
+            &:hover {
+                width: 100%;
+                height: 20em;
+            }
         }
     }
 
