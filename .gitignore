@@ -36,7 +36,7 @@ node_modules
 .idea
 
 # gulp dist
-dist
+build
 
 # test data
 data
