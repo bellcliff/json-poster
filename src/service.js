@@ -8,7 +8,7 @@ module.exports = function () {
                     var info = {};
                     info[key] = value;
                     chrome.storage.sync.set(info, data => {
-                        console.log('storage save', key, value, data);
+                        console.info('storage save', key, value, data);
                         resolve(data);
                     });
                 });
@@ -26,7 +26,7 @@ module.exports = function () {
             self.get = function (key) {
                 return new Promise(function (resolve) {
                     chrome.storage.sync.get(key, function (data) {
-                        console.log('storage load', key, data);
+                        console.info('storage load', key, data);
                         resolve(data[key]);
                     });
                 });

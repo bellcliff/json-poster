@@ -1,7 +1,7 @@
 module.exports = function ($scope, $rootScope, historyService, chromeStorage, urlService, EVENT_URL_SELECTED) {
     historyService.history().then(histories=> {
         $scope.historyInfo = histories;
-        console.log($scope.historyInfo[0].urlInfo);
+        console.info($scope.historyInfo[0].urlInfo);
         $scope.$digest();
     });
 
