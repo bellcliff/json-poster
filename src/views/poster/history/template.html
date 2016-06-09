@@ -16,12 +16,11 @@
                         class="primary">{{requestsInfo.urlInfo.port}}</span><span class="secondary">{{requestsInfo.urlInfo.pathname}}</span><span
                         class="secondary">{{requestsInfo.urlInfo.search}}</span>
                 </h6>
-                <ul>
-                    <li data-ng-repeat="request in requestsInfo.requests"
-                        ng-click="select(requestsInfo.url, request, $event)">
-                        <pre class="request-body" ng-bind="request.body | json: 2"></pre>
-                    </li>
-                </ul>
+                <div class="request-body clearfix">
+                    <pre ng-bind="request.body | json: 2"
+                         data-ng-repeat="request in requestsInfo.requests"
+                         ng-click="select(requestsInfo.url, request, $event)"></pre>
+                </div>
                 <!--<ul>-->
                 <!--<span data-ng-bind="url" ng-click="select(url)"></span>-->
                 <!--<span class="glyphicon glyphicon-remove" ng-click="remove(url)"></span>-->

@@ -4,11 +4,15 @@
 angular.module('poster')
     .service('chromeStorage', function () {
         var self = this;
+
+        var getStorage = function(){
+            return chrome.storage.local;
+        };
         self.set = (key, value) => {
             return new Promise(resolve => {
                 var info = {};
                 info[key] = value;
-                chrome.storage.sync.set(info, data => {
+                getStorage().set(info, data => {
                     console.debug('storage save', key, value, data);
                     resolve(data);
                 });
@@ -26,7 +30,7 @@ angular.module('poster')
 
         self.get = key => {
             return new Promise(function (resolve) {
-                chrome.storage.sync.get(key, function (data) {
+                getStorage().get(key, function (data) {
                     console.debug('storage load', key, data);
                     resolve(data[key]);
                 });
@@ -36,7 +40,7 @@ angular.module('poster')
         self.clear = () => {
             console.debug('clean storage');
             return new Promise(resolve => {
-                chrome.storage.sync.clear(function () {
+                getStorage().clear(function () {
                     resolve();
                 });
             });
@@ -50,7 +54,7 @@ angular.module('poster')
                         return self.set(key, values);
                     });
                 else
-                    chrome.storage.sync.remove(key, function (data) {
+                    getStorage().remove(key, function (data) {
                         resolve(data);
                     });
             });

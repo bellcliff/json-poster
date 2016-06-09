@@ -21,14 +21,25 @@
             }
         }
 
-        pre.request-body {
-            height: 8em;
-            width: 30%;
-            float: left;
-            &:hover {
+        .request-body {
+            &:after {
+                clear: both;
+            }
+            pre {
+                height: 8em;
+                width: 160px;
+                float: left;
+            }
+        }
+
+        & li:hover {
+            pre {
                 width: 100%;
                 height: 20em;
             }
+        }
+        .request-body::after {
+            clear: both;
         }
     }
 

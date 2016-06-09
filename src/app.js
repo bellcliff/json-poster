@@ -5,7 +5,7 @@ angular.module('poster', ['ui.router'])
     .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('');
         $stateProvider
-            .state('poster', _.extend({url: ''}, require('./views/poster/router')))
+            .state('poster', _.extend({url: ''}, require('./views/poster/router')));
     })
 
     .run(function ($http, $state) {
