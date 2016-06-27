@@ -22,6 +22,7 @@ angular.module('poster')
         self.add = (key, value) => {
             return self.get(key).then(values => {
                 if (!values) values = [];
+                console.log(values, value);
                 if (values.indexOf(value) != -1) return values;
                 values.push(value);
                 return self.set(key, values);
