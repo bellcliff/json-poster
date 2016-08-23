@@ -1,8 +1,9 @@
-module.exports = function ($scope, $http, $filter, historyService, EVENT_URL_SELECTED) {
+module.exports = function ($scope, $http, $filter, historyService, EVENTS) {
 
-    $scope.$on(EVENT_URL_SELECTED, function (e, info) {
+    $scope.$on(EVENTS.URL_SELECTED, function (e, info) {
         $scope.url = info.url;
-        $scope.body = $filter('json')(info.body, 4);
+        if (info.body)
+            $scope.body = $filter('json')(info.body, 4);
     });
 
     $scope.getStatusClass = function () {

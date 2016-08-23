@@ -1,6 +1,9 @@
 angular.module('poster', ['ui.router'])
 
-    .constant('EVENT_URL_SELECTED', 'event_url_selected')
+    .constant('EVENTS', {
+      URL_SELECTED: 'URL_SELECTED',
+      NEW_HISTORY: 'NEW_HISTORY'
+    })
 
     .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('');

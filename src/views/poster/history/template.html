@@ -1,30 +1,24 @@
 <div class="panel panel-default history-panel" expandable="panel">
     <div class="panel-heading">
-        <h3 class="panel-title">History<span class="badge">{{historyInfo.length}}</span></h3>
+        <h3 class="panel-title"><span>History</span><span class="badge">{{historyInfo.length}}</span><span ng-bind="updatedTime|date:'HH:mm:ss'"></span></h3>
         <button class="btn btn-danger btn-remove-all" ng-click="remove(null, $event)">clean</button>
     </div>
     <div class="panel-body">
-        <!--<div>-->
-        <!--<h4>Actions:-->
-        <!--<a class="btn btn-danger" ng-click="clean()">CLEAN</a>-->
-        <!--</h4>-->
-        <!--</div>-->
         <ul class="history-list">
-            <li data-ng-repeat="requestsInfo in historyInfo" ng-click="select(requestsInfo)">
+            <li data-ng-repeat="requestInfo in historyInfo" ng-click="select($event, requestInfo.url)">
                 <h6 class="url-info">
-                    <span class="secondary">{{requestsInfo.urlInfo.protocol}}//</span><span class="primary">{{requestsInfo.urlInfo.hostname}}</span><span
-                        class="primary">{{requestsInfo.urlInfo.port}}</span><span class="secondary">{{requestsInfo.urlInfo.pathname}}</span><span
-                        class="secondary">{{requestsInfo.urlInfo.search}}</span>
+                    <span class="secondary">{{requestInfo.urlInfo.protocol}}//</span>
+                    <span class="primary">{{requestInfo.urlInfo.hostname}}</span>
+                    <span class="primary">{{requestInfo.urlInfo.port}}</span>
+                    <span class="secondary">{{requestInfo.urlInfo.pathname}}</span>
+                    <span class="secondary">{{requestInfo.urlInfo.search}}</span>
+                    <span class="action pull-right" ng-click="remove(requestInfo.url, $event)">Delete</span>
                 </h6>
                 <div class="request-body clearfix">
                     <pre ng-bind="request.body | json: 2"
-                         data-ng-repeat="request in requestsInfo.requests"
-                         ng-click="select(requestsInfo.url, request, $event)"></pre>
+                         data-ng-repeat="request in requestInfo.requests"
+                         ng-click="select($event, requestInfo.url, request.body)"></pre>
                 </div>
-                <!--<ul>-->
-                <!--<span data-ng-bind="url" ng-click="select(url)"></span>-->
-                <!--<span class="glyphicon glyphicon-remove" ng-click="remove(url)"></span>-->
-                <!--</ul>-->
             </li>
         </ul>
     </div>
