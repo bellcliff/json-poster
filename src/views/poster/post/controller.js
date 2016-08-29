@@ -22,14 +22,12 @@ module.exports = function ($scope, $http, $filter, historyService, EVENTS) {
         var postBody = JSON.parse(body);
         $http.post($scope.url, postBody)
             .then(function (data) {
-                delete $scope.err;
                 $scope.response = data;
                 // historyService.history($scope.url, {body: postBody, resp: data.data});
                 historyService.history($scope.url, {body: postBody});
             })
             .catch(function (err) {
-                delete $scope.response;
-                $scope.err = err;
+                $scope.response = err;
             });
 
         historyService.url($scope.url);
