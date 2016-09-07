@@ -42,7 +42,5 @@ module.exports = function ($scope, $http, $filter, historyService, EVENTS) {
       .catch(function (err) {
         $scope.response = err;
       });
-
-    historyService.url($scope.url);
   };
 };

@@ -4,11 +4,10 @@
 angular.module('poster').service('historyService', function ($q, $rootScope, chromeStorage, urlService, EVENTS) {
   var self = this;
 
-  self.add = (url, info)=>{
+  self.add = (url, info)=> {
     return chromeStorage.add('urls', url).then(() => {
-      return chromeStorage.add(url, JSON.stringify(info)).then((history)=> {
+      return !info ? null : chromeStorage.add(url, JSON.stringify(info)).then((history)=> {
         $rootScope.$broadcast(EVENTS.NEW_HISTORY, history);
-        return history;
       });
     });
   };
