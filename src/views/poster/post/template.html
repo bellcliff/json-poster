@@ -4,6 +4,7 @@
         <h3 class="panel-title">Request</h3>
     </div>
     <div class="panel-body">
+        <div><select ng-options="postType as postType.label for postType in postTypes" ng-model="selectedType"></select></div>
         <form>
             <div class="form-group">
                 <label>URL</label>
@@ -30,6 +31,5 @@
     </div>
     <div class="panel-body">
         <pre class="response" data-ng-bind="response.data | json: 2"></pre>
-        <pre class="response" data-ng-bind="err | json: 2"></pre>
     </div>
 </div>

@@ -12,7 +12,7 @@ angular.module('poster', ['ui.router'])
     })
 
     .run(function ($http, $state) {
-        $http.defaults.headers.post['Content-Type'] = 'application/vnd.americanexpress.req-v1+json';
+        // $http.defaults.headers.post['Content-Type'] = 'application/vnd.americanexpress.req-v1+json';
         $state.go('poster');
     });
 
